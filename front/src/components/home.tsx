@@ -25,7 +25,7 @@ export function Home(props: IHomeProps) {
       <div className="row">
         {lists &&
           lists.map((l) => (
-            <div className="col-sm-12 col-md-6 col-lg-4 mb-4">
+            <div key={l.id} className="col-sm-12 col-md-6 col-lg-4 mb-4">
               <TodoListDetail detail={l} />
             </div>
           ))}

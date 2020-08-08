@@ -1,12 +1,13 @@
 import * as React from "react";
 import { TodoListItem } from "./list-item";
-import { get } from "./../utils/http";
+import { get, post } from "./../utils/http";
 import { ITodoList } from "./../models/todo-list.model";
 import { useDispatch } from "react-redux";
 import { setActiveList } from "../actions/todo-list-actions";
 import { useTypedSelector } from "./../use-typed-selector";
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
+import { SubmittableInput } from "./input";
 
 export interface ITodoListProps {
   list: ITodoList;
@@ -29,16 +30,38 @@ export function TodoList(props: ITodoListProps) {
     return null;
   }
 
+  const addItem = (item: string) => {
+    list.items.push({
+      id: "" + Math.random() * 10000,
+      text: item,
+      done: false,
+    });
+    post("http://localhost:8080/api/list", list).then((list: ITodoList) => {
+      dispatch(setActiveList(list));
+    });
+  };
+
   return (
-    <div>
+    <div className="">
       <Link to="/">
         <button className=" text-center btn-lg btn-light">Home</button>
       </Link>
-      <div>
+      <div className="list card">
         <h3>{list.name}</h3>
         {list.items.map((item, index) => {
-          return <TodoListItem key={item.id} item={item} index={index} />;
+          return (
+            <TodoListItem
+              key={item.id}
+              item={item}
+              listId={list.id}
+              index={index}
+            />
+          );
         })}
+        <SubmittableInput
+          placeholder={"Add another item... "}
+          onSubmit={addItem}
+        ></SubmittableInput>
       </div>
     </div>
   );

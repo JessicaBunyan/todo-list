@@ -142,9 +142,9 @@ async function updateItem(req: Request, res: Response) {
     return res.status(400).send("Invalid update - list item does not exist");
   }
 
-  item.done = Boolean(state);
+  item.done = state == "true";
 
-  res.send(item);
+  res.send(list);
 }
 
 function getId() {

@@ -14,10 +14,11 @@ body {
   background: white;
   border: solid 1px grey;
   border-radius: 0;
+  padding: 6px;
 }
 
-p {
-  padding: 6px;
+.strikethrough {
+  text-decoration: line-through;
 }
 
 a {
@@ -25,4 +26,14 @@ a {
 }
 a:hover {
   text-decoration: none;
+}
+
+.item {
+  width: 100%;
+}
+
+.list {
+  max-width: 800px;
+  margin: 0 auto;
+  height: auto;
 }
