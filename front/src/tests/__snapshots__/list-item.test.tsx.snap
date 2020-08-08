@@ -1,13 +1,21 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`renders correctly when checked 1`] = `
-<div>
-  0
-  . 
-  this is an item
+<li
+  className="item pr-2"
+>
+  <span
+    className=""
+  >
+    1
+    . 
+    this is an item
+  </span>
   <input
     checked={false}
+    className="float-right px-4 checkbox"
+    onChange={[Function]}
     type="checkbox"
   />
-</div>
+</li>
 `;

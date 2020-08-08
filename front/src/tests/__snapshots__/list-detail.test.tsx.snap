@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly when checked 1`] = `
+<a
+  href="/list/foo"
+  onClick={[Function]}
+>
+  <div
+    className="card"
+  >
+    <h3
+      className=""
+    >
+      <p>
+        Jessica test
+      </p>
+      <p
+        className="completed-count"
+      >
+        3
+        /
+        4
+      </p>
+    </h3>
+  </div>
+</a>
+`;

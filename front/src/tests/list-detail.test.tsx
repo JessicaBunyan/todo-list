@@ -3,6 +3,7 @@ import renderer from "react-test-renderer";
 import { TodoListItem } from "../components/list-item";
 import { ITodoListDetail } from "./../models/todo-list.model";
 import { TodoListDetail } from "../components/list-detail";
+import { MemoryRouter } from "react-router-dom";
 
 const testList: ITodoListDetail = {
   id: "foo",
@@ -12,6 +13,12 @@ const testList: ITodoListDetail = {
 };
 
 it("renders correctly when checked", () => {
-  const tree = renderer.create(<TodoListDetail detail={testList} />).toJSON();
+  const tree = renderer
+    .create(
+      <MemoryRouter initialEntries={["url"]}>
+        <TodoListDetail detail={testList} />
+      </MemoryRouter>,
+    )
+    .toJSON();
   expect(tree).toMatchSnapshot();
 });
