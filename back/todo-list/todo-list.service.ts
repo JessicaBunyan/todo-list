@@ -1,11 +1,9 @@
 import { TodoList } from "./todo-list.model";
-import { promises } from "dns";
 import { mockData } from "./todo-list-mock-data";
-
-const lists: { [key: string]: TodoList } = mockData;
 
 export class TodoListService {
   private static instance: TodoListService;
+  private lists: { [key: string]: TodoList } = mockData;
 
   public static getInstance() {
     if (TodoListService.instance) {
@@ -16,26 +14,30 @@ export class TodoListService {
     return TodoListService.instance;
   }
 
+  public reset() {
+    this.lists = {};
+  }
+
   public async saveList(list: TodoList) {
     list.id = list.id || getId();
-    lists[list.id] = list;
+    this.lists[list.id] = list;
 
     return list;
   }
 
   public async deleteList(id: string) {
-    const list = lists[id];
+    const list = this.lists[id];
     if (!list) {
       return Promise.reject("No Such List");
     }
 
-    lists[id] = undefined;
+    this.lists[id] = undefined;
 
     return Promise.resolve("OK");
   }
 
   public async getAllListDetails() {
-    const val = Object.values(lists)
+    const val = Object.values(this.lists)
       .filter((l) => l)
       .map((l) => ({
         id: l.id,
@@ -47,13 +49,13 @@ export class TodoListService {
   }
 
   public async getList(id: string) {
-    const val = lists[id];
+    const val = this.lists[id];
 
     return Promise.resolve(val);
   }
 
   public updateListItemState(listId: string, itemId: string, state: boolean) {
-    const list = lists[listId];
+    const list = this.lists[listId];
 
     if (!list) {
       return Promise.reject("No such list");
