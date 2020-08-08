@@ -4,7 +4,7 @@ import { ActionType } from "./action-types";
 export function setActiveList(list: ITodoList) {
   return {
     type: ActionType.setActiveList,
-    list: list,
+    activeList: list,
   };
 }
 

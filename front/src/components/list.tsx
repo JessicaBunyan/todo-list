@@ -6,12 +6,14 @@ import { useDispatch } from "react-redux";
 import { setActiveList } from "../actions/todo-list-actions";
 import { useTypedSelector } from "./../use-typed-selector";
 import { useParams } from "react-router";
+import { Link } from "react-router-dom";
 
 export interface ITodoListProps {
   list: ITodoList;
 }
 
 export function TodoList(props: ITodoListProps) {
+  console.log("in todo list");
   const dispatch = useDispatch();
   const { listId } = useParams();
 
@@ -21,18 +23,23 @@ export function TodoList(props: ITodoListProps) {
     });
   }, []);
 
-  useTypedSelector((s) => s.todoList);
+  const list = useTypedSelector((s) => s.todoList && s.todoList.list);
 
-  if (!props.list) {
+  if (!list) {
     return null;
   }
 
   return (
     <div>
-      <h3>{props.list.name}</h3>
-      {props.list.items.map((item, index) => {
-        return <TodoListItem key={item.id} item={item} index={index} />;
-      })}
+      <Link to="/">
+        <button className=" text-center btn-lg btn-light">Home</button>
+      </Link>
+      <div>
+        <h3>{list.name}</h3>
+        {list.items.map((item, index) => {
+          return <TodoListItem key={item.id} item={item} index={index} />;
+        })}
+      </div>
     </div>
   );
 }

@@ -6,12 +6,19 @@ import { Home } from "./home";
 
 export function Routes() {
   return (
-    <Router>
-      <Switch>
-        <Route path="list/:listId" component={TodoList}></Route>
-        <Route path="lists"></Route>
-        <Route path="/" component={Home} />
-      </Switch>
-    </Router>
+    <div>
+      <div className="header mb-3">
+        <h1 className="text-center mt-5">Todo List App</h1>
+      </div>
+      <div className="container">
+        <Router>
+          <Switch>
+            <Route path="/list/:listId" component={TodoList}></Route>
+            <Route path="/lists"></Route>
+            <Route path="/" exact component={Home} />
+          </Switch>
+        </Router>
+      </div>
+    </div>
   );
 }

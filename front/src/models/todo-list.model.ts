@@ -1,3 +1,9 @@
+export interface ITodoListDetail {
+  id: string;
+  name: string;
+  numItems: string;
+}
+
 export interface ITodoList {
   id?: string;
   name: string;

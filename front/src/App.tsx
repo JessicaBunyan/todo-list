@@ -10,15 +10,6 @@ import { Provider } from "react-redux";
 import { rootReducer } from "./reducers/root-reducer";
 import { createStore } from "redux";
 
-const testList: ITodoList = {
-  id: "foo",
-  name: "Jessica test",
-  items: [
-    { id: "fsd", text: "this is an item", done: false },
-    { id: "ffdsfds", text: "this is also an item", done: false },
-  ],
-};
-
 const store = createStore(
   rootReducer,
   {},

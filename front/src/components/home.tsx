@@ -5,11 +5,12 @@ import { useTypedSelector } from "./../use-typed-selector";
 import { setAllLists } from "../actions/todo-list-actions";
 import { useDispatch } from "react-redux";
 import { TodoList } from "./list";
+import { TodoListDetail } from "./list-detail";
 
 export interface IHomeProps {}
 
 export function Home(props: IHomeProps) {
-  const lists = useTypedSelector((s) => s.todoList && s.todoList.lists);
+  const lists = useTypedSelector((s) => s.todoList && s.todoList.listDetails);
   const dispatch = useDispatch();
   console.log(lists);
   React.useEffect(() => {
@@ -20,6 +21,15 @@ export function Home(props: IHomeProps) {
   }, []);
 
   return (
-    <div>{lists && lists.map((l) => <TodoList list={l} key={l.id} />)}</div>
+    <div>
+      <div className="row">
+        {lists &&
+          lists.map((l) => (
+            <div className="col-sm-12 col-md-6 col-lg-4 mb-4">
+              <TodoListDetail detail={l} />
+            </div>
+          ))}
+      </div>
+    </div>
   );
 }

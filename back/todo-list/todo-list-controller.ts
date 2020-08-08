@@ -3,7 +3,7 @@ import { Router, Request, Response } from "express";
 
 const startupState: { [key: string]: TodoList } = {
   a: {
-    id: "1",
+    id: "a",
     name: "Shopping",
     items: [
       {
@@ -24,8 +24,50 @@ const startupState: { [key: string]: TodoList } = {
     ],
   },
   b: {
-    id: "2",
+    id: "b",
     name: "Chores",
+    items: [
+      {
+        id: "p",
+        text: "Hoovering",
+        done: true,
+      },
+      {
+        id: "q",
+        text: "Dusting",
+        done: false,
+      },
+      {
+        id: "o",
+        text: "Gardening",
+        done: true,
+      },
+    ],
+  },
+  c: {
+    id: "c",
+    name: "Chores copy",
+    items: [
+      {
+        id: "p",
+        text: "Hoovering",
+        done: true,
+      },
+      {
+        id: "q",
+        text: "Dusting",
+        done: false,
+      },
+      {
+        id: "o",
+        text: "Gardening",
+        done: true,
+      },
+    ],
+  },
+  d: {
+    id: "d",
+    name: "Chores copy 2",
     items: [
       {
         id: "p",
@@ -66,17 +108,25 @@ async function saveList(req: Request, res: Response) {
 
 async function getAllLists(req: Request, res: Response) {
   console.log("in get all lists");
-  res.json(Object.values(lists));
+  res.json(
+    Object.values(lists).map((l) => ({
+      id: l.id,
+      name: l.name,
+      numItems: l.items.length,
+    })),
+  );
 }
 
 async function getList(req: Request, res: Response) {
-  console.log("in get lists");
+  console.log("in get list");
   const id = req.params.id;
 
   const list = lists[id];
   if (!list) {
-    return res.status(404).json("List not found");
+    return res.status(404).send("List not found");
   }
+
+  res.json(list);
 }
 
 async function updateItem(req: Request, res: Response) {
