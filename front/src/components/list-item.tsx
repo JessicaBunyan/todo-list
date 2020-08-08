@@ -1,5 +1,5 @@
 import * as React from "react";
-import { ITodoListItem } from "../../models/todo-list.model";
+import { ITodoListItem } from "../models/todo-list.model";
 
 export interface ITodoListItemProps {
   index: number;

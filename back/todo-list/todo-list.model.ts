@@ -1,7 +1,7 @@
 export interface TodoList {
   id: string;
   name: string;
-  createdOn: number;
+  // createdOn?: number;
   items: TodoListItem[];
 }
 

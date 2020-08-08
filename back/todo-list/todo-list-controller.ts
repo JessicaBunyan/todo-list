@@ -1,10 +1,56 @@
 import { TodoList } from "./todo-list.model";
 import { Router, Request, Response } from "express";
 
-const lists: { [key: string]: TodoList } = {};
+const startupState: { [key: string]: TodoList } = {
+  a: {
+    id: "1",
+    name: "Shopping",
+    items: [
+      {
+        id: "z",
+        text: "Apples",
+        done: false,
+      },
+      {
+        id: "y",
+        text: "Bananas",
+        done: false,
+      },
+      {
+        id: "x",
+        text: "Carrots",
+        done: true,
+      },
+    ],
+  },
+  b: {
+    id: "2",
+    name: "Chores",
+    items: [
+      {
+        id: "p",
+        text: "Hoovering",
+        done: true,
+      },
+      {
+        id: "q",
+        text: "Dusting",
+        done: false,
+      },
+      {
+        id: "o",
+        text: "Gardening",
+        done: true,
+      },
+    ],
+  },
+};
 
-export const routes = function (router: Router) {
+const lists: { [key: string]: TodoList } = startupState;
+
+export const todoListRoutes = function (router: Router) {
   router.post("/list", saveList);
+  router.get("/list/all", getAllLists);
   router.get("/list/:id", getList);
   router.patch("/list/:listId/:itemId/:state", updateItem);
 };
@@ -15,15 +61,21 @@ async function saveList(req: Request, res: Response) {
   list.id = list.id || getId();
   lists[list.id] = req.body;
 
-  return res.send(list);
+  return res.json(list);
+}
+
+async function getAllLists(req: Request, res: Response) {
+  console.log("in get all lists");
+  res.json(Object.values(lists));
 }
 
 async function getList(req: Request, res: Response) {
+  console.log("in get lists");
   const id = req.params.id;
 
   const list = lists[id];
   if (!list) {
-    return res.status(404).send("List not found");
+    return res.status(404).json("List not found");
   }
 }
 
@@ -32,7 +84,7 @@ async function updateItem(req: Request, res: Response) {
 
   const list = lists[listId];
   if (!list) {
-    return res.status(400).send("Invalid update - list does not exist");
+    return res.status(400).json("Invalid update - list does not exist");
   }
   const item = list.items.find((i) => i.id == itemId);
 

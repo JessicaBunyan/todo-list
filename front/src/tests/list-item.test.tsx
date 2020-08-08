@@ -1,6 +1,6 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import { TodoListItem } from "../components/list-item/list-item";
+import { TodoListItem } from "../components/list-item";
 import { ITodoList } from "../models/todo-list.model";
 
 const testList: ITodoList = {
