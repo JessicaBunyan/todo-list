@@ -113,6 +113,7 @@ async function getAllLists(req: Request, res: Response) {
       id: l.id,
       name: l.name,
       numItems: l.items.length,
+      numCompletedItems: l.items.filter((i) => i.done).length,
     })),
   );
 }

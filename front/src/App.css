@@ -28,12 +28,32 @@ a:hover {
   text-decoration: none;
 }
 
+ol {
+  list-style: none;
+  padding: unset;
+}
+
 .item {
   width: 100%;
+  font-size: 1.25rem;
 }
 
 .list {
   max-width: 800px;
   margin: 0 auto;
   height: auto;
+}
+
+.checkbox {
+  position: relative;
+  margin: 0;
+}
+.checkbox:before {
+  cursor: pointer;
+  content: "";
+  position: absolute;
+  top: -10px;
+  bottom: -10px;
+  left: -10px;
+  right: -10px;
 }

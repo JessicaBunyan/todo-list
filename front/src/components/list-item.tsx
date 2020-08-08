@@ -23,16 +23,16 @@ export function TodoListItem(props: ITodoListItemProps) {
   }
 
   return (
-    <div className="item ">
+    <li className="item pr-2">
       <span className={item.done ? "strikethrough" : ""}>
-        {index + 1}. {item.text}
+        {props.index + 1}. {item.text}
       </span>
       <input
-        className="float-right"
+        className="float-right px-4 checkbox"
         type="checkbox"
         checked={item.done}
         onChange={() => onChange(item.id)}
       ></input>
-    </div>
+    </li>
   );
 }

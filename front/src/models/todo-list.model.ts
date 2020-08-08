@@ -1,7 +1,8 @@
 export interface ITodoListDetail {
   id: string;
   name: string;
-  numItems: string;
+  numItems: number;
+  numCompletedItems: number;
 }
 
 export interface ITodoList {

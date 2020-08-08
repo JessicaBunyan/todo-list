@@ -14,7 +14,9 @@ export function TodoListDetail(props: IListCardProps) {
         <h3 className="">
           <p>
             {props.detail.name}
-            <span className="float-right">{props.detail.numItems}</span>
+            <span className="float-right">
+              {props.detail.numCompletedItems}/{props.detail.numItems}
+            </span>
           </p>
         </h3>
       </div>

@@ -48,16 +48,18 @@ export function TodoList(props: ITodoListProps) {
       </Link>
       <div className="list card">
         <h3>{list.name}</h3>
-        {list.items.map((item, index) => {
-          return (
-            <TodoListItem
-              key={item.id}
-              item={item}
-              listId={list.id}
-              index={index}
-            />
-          );
-        })}
+        <ol>
+          {list.items.map((item, index) => {
+            return (
+              <TodoListItem
+                key={item.id}
+                item={item}
+                listId={list.id}
+                index={index}
+              />
+            );
+          })}
+        </ol>
         <SubmittableInput
           placeholder={"Add another item... "}
           onSubmit={addItem}
