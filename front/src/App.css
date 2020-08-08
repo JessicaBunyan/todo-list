@@ -12,9 +12,9 @@ body {
 .card {
   height: 200px;
   background: white;
-  border: solid 1px grey;
   border-radius: 0;
   padding: 6px;
+  box-shadow: 2px 2px 1px grey;
 }
 
 .strikethrough {
@@ -43,9 +43,19 @@ ol {
   margin: 0 auto;
   height: auto;
 }
+.list-icons {
+  color: grey;
+  font-size: 1.2rem;
+  padding: 6px;
+}
+.list-icons svg {
+  cursor: pointer;
+  margin-left: 12px;
+}
 
 .checkbox {
   position: relative;
+  margin-top: 5px;
   margin: 0;
 }
 .checkbox:before {

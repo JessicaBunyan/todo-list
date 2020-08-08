@@ -1,4 +1,4 @@
-import { ITodoList } from "./../models/todo-list.model";
+import { ITodoList, ITodoListDetail } from "./../models/todo-list.model";
 import { ActionType } from "./action-types";
 
 export function setActiveList(list: ITodoList) {
@@ -8,7 +8,7 @@ export function setActiveList(list: ITodoList) {
   };
 }
 
-export function setAllLists(lists: ITodoList[]) {
+export function setAllLists(lists: ITodoListDetail[]) {
   return {
     type: ActionType.setAllLists,
     lists: lists,

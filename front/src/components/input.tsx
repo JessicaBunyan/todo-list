@@ -1,4 +1,6 @@
 import * as React from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
 
 export interface ISubmittableInputProps {
   placeholder?: string;
@@ -37,7 +39,7 @@ export function SubmittableInput(props: ISubmittableInputProps) {
       />
       <div className="input-group-append">
         <button onClick={onClick} className="btn btn-outline-secondary">
-          Add
+          <FontAwesomeIcon icon={faPlus} />
         </button>
       </div>
     </div>
