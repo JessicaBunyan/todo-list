@@ -8,7 +8,11 @@ import { useTypedSelector } from "./../use-typed-selector";
 import { useParams, useHistory } from "react-router";
 import { Link } from "react-router-dom";
 import { SubmittableInput } from "./input";
-import { faPencilAlt, faTrash } from "@fortawesome/free-solid-svg-icons";
+import {
+  faPencilAlt,
+  faTrash,
+  faHome,
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export interface ITodoListProps {
@@ -26,13 +30,13 @@ export function TodoList(props: ITodoListProps) {
   console.log(list);
 
   const poll = () => {
-    get("http://localhost:8080/api/poll/list", controller.signal).then(
-      (v: ITodoList) => {
+    get("http://localhost:8080/api/poll/list", controller.signal)
+      .then((v: ITodoList) => {
         if (list && v.id == list.id) {
           dispatch(setActiveList(v));
         }
-      },
-    );
+      })
+      .catch(() => {});
   };
 
   React.useEffect(() => {
@@ -71,13 +75,14 @@ export function TodoList(props: ITodoListProps) {
   return (
     <div className="">
       <Link to="/">
-        <button className=" text-center btn-lg btn-light">Home</button>
+        <button className="mega text-center btn-lg btn-light">
+          <FontAwesomeIcon icon={faHome} />
+        </button>
       </Link>
       <div className="list card">
         <h3>
           {list.name}{" "}
           <span className="float-right list-icons">
-            <FontAwesomeIcon icon={faPencilAlt} />
             <FontAwesomeIcon icon={faTrash} onClick={deleteList} />
           </span>
         </h3>

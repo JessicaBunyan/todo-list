@@ -12,11 +12,9 @@ export function TodoListDetail(props: IListCardProps) {
     <Link to={"/list/" + props.detail.id}>
       <div className="card">
         <h3 className="">
-          <p>
-            {props.detail.name}
-            <span className="float-right">
-              {props.detail.numCompletedItems}/{props.detail.numItems}
-            </span>
+          <p>{props.detail.name}</p>
+          <p className="completed-count">
+            {props.detail.numCompletedItems}/{props.detail.numItems}
           </p>
         </h3>
       </div>

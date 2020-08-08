@@ -6,6 +6,10 @@ import { setAllLists } from "../actions/todo-list-actions";
 import { useDispatch } from "react-redux";
 import { TodoList } from "./list";
 import { TodoListDetail } from "./list-detail";
+import FontAwesome from "react-fontawesome";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import { AddList } from "./add-list";
 
 export interface IHomeProps {}
 
@@ -17,11 +21,11 @@ export function Home(props: IHomeProps) {
   console.log(lists);
 
   const poll = () => {
-    get("http://localhost:8080/api/poll/lists", controller.signal).then(
-      (v: ITodoListDetail[]) => {
+    get("http://localhost:8080/api/poll/lists", controller.signal)
+      .then((v: ITodoListDetail[]) => {
         dispatch(setAllLists(v));
-      },
-    );
+      })
+      .catch(() => {});
   };
 
   React.useEffect(() => {
@@ -48,6 +52,7 @@ export function Home(props: IHomeProps) {
               <TodoListDetail detail={l} />
             </div>
           ))}
+        <AddList></AddList>
       </div>
     </div>
   );

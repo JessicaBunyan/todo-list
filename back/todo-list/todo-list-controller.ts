@@ -18,9 +18,8 @@ export const todoListRoutes = function (router: Router, longPoll) {
     const list: TodoList = req.body;
 
     const saved = await listService.saveList(list);
-    // longPoll.publish("/poll/list", lists[list.id]);
-    // longPoll.publish("/poll/lists", lists);
 
+    longPoll.publish("/poll/list", saved);
     const allLists = await listService.getAllListDetails();
     longPoll.publish("/poll/lists", allLists);
     return res.json(list);
