@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly when checked 1`] = `
+<div>
+  0
+  . 
+  this is an item
+  <input
+    checked={false}
+    type="checkbox"
+  />
+</div>
+`;

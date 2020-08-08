@@ -1,24 +1,24 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import logo from "./logo.svg";
+import "./App.css";
+import { ITodoList } from "./models/todo-list.model";
+import { TodoList } from "./components/list";
+
+const testList: ITodoList = {
+  id: "foo",
+  name: "Jessica test",
+  items: [
+    { id: "fsd", text: "this is an item", done: false },
+    { id: "ffdsfds", text: "this is also an item", done: false },
+  ],
+};
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Todo List App</h1>
+
+      <TodoList list={testList}></TodoList>
     </div>
   );
 }
