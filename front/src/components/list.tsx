@@ -8,11 +8,7 @@ import { useTypedSelector } from "./../use-typed-selector";
 import { useParams, useHistory } from "react-router";
 import { Link } from "react-router-dom";
 import { SubmittableInput } from "./input";
-import {
-  faPencilAlt,
-  faTrash,
-  faHome,
-} from "@fortawesome/free-solid-svg-icons";
+import { faTrash, faHome } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export interface ITodoListProps {
@@ -20,40 +16,33 @@ export interface ITodoListProps {
 }
 
 export function TodoList(props: ITodoListProps) {
-  console.log("in todo list");
   const dispatch = useDispatch();
   const { listId } = useParams();
   const history = useHistory();
   const list = useTypedSelector((s) => s.todoList && s.todoList.list);
   const controller = new AbortController(); // for cancelling long-polling
-  console.log("LIST");
-  console.log(list);
-
-  const poll = () => {
-    get("http://localhost:8080/api/poll/list", controller.signal)
-      .then((v: ITodoList) => {
-        if (list && v.id == list.id) {
-          dispatch(setActiveList(v));
-        }
-      })
-      .catch(() => {});
-  };
 
   React.useEffect(() => {
     get("http://localhost:8080/api/list/" + listId).then((list: ITodoList) => {
       dispatch(setActiveList(list));
     });
   }, []);
+
   React.useEffect(() => {
     if (list) {
-      poll();
+      get("http://localhost:8080/api/poll/list", controller.signal)
+        .then((v: ITodoList) => {
+          if (list && v.id === list.id) {
+            dispatch(setActiveList(v));
+          }
+        })
+        .catch(() => {});
     }
     return () => controller.abort();
   });
 
   const addItem = (item: string) => {
     list.items.push({
-      id: "" + Math.random() * 10000,
       text: item,
       done: false,
     });

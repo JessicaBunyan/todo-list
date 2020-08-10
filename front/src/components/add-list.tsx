@@ -3,7 +3,6 @@ import { SubmittableInput } from "./input";
 import { post } from "../utils/http";
 import { ITodoList } from "../models/todo-list.model";
 import { useHistory } from "react-router";
-import { ITodoListItem } from "./../models/todo-list.model";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 

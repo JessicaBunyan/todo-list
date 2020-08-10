@@ -1,7 +1,6 @@
 import { TodoList } from "./todo-list.model";
 import { Router, Request, Response } from "express";
 import { TodoListService } from "./todo-list.service";
-import { get } from "./../../front/src/utils/http";
 
 const listService = TodoListService.getInstance();
 
@@ -20,20 +19,19 @@ export const todoListRoutes = function (router: Router, longPoll) {
     const saved = await listService.saveList(list);
 
     longPoll.publish("/poll/list", saved);
+
     const allLists = await listService.getAllListDetails();
     longPoll.publish("/poll/lists", allLists);
     return res.json(list);
   }
 
   async function getAllLists(req: Request, res: Response) {
-    console.log("in get all lists");
     const list = await listService.getAllListDetails();
 
     res.json(list);
   }
 
   async function getList(req: Request, res: Response) {
-    console.log("in get list");
     const id = req.params.id;
 
     const list = await listService.getList(id);
@@ -46,7 +44,7 @@ export const todoListRoutes = function (router: Router, longPoll) {
 
   async function deleteList(req: Request, res: Response) {
     const id = req.params.id;
-    // console.log("in delete");
+
     listService
       .deleteList(id)
       .then(async () => {

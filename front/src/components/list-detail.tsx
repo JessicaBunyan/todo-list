@@ -1,5 +1,4 @@
 import * as React from "react";
-import { ITodoList } from "../models/todo-list.model";
 import { ITodoListDetail } from "./../models/todo-list.model";
 import { Link } from "react-router-dom";
 

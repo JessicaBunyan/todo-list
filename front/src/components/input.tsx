@@ -13,7 +13,7 @@ export function SubmittableInput(props: ISubmittableInputProps) {
   const onKeyPress = (ev: React.KeyboardEvent<HTMLInputElement>) => {
     console.log(ev);
     console.log(ev.currentTarget.value);
-    if (ev.key == "Enter" && val) {
+    if (ev.key === "Enter" && val) {
       props.onSubmit(val);
       setVal("");
       //   ev.currentTarget.value = "";

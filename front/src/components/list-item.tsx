@@ -11,7 +11,7 @@ export interface ITodoListItemProps {
 }
 
 export function TodoListItem(props: ITodoListItemProps) {
-  const { item, index } = props;
+  const { item } = props;
   const dispatch = useDispatch();
 
   function onChange(itemId: string) {

@@ -10,16 +10,10 @@ export function todoList(
   prevState: IActiveListState,
   action: TodoListAction,
 ): IActiveListState {
-  console.log("in reducer");
-  console.log(prevState);
-  console.log(action);
   switch (action.type) {
     case ActionType.setActiveList:
       return { ...prevState, list: action.activeList };
     case ActionType.setAllLists:
-      console.log("set all lists");
-      console.log(action.lists);
-      console.log({ ...prevState, lists: action.lists });
       return { ...prevState, listDetails: action.lists };
     default:
       return null;

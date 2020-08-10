@@ -13,7 +13,7 @@ export interface ITodoList {
 }
 
 export interface ITodoListItem {
-  id: string;
+  id?: string;
   text: string;
   done: boolean;
 }

@@ -1,14 +1,10 @@
 import * as React from "react";
 import { get } from "./../utils/http";
-import { ITodoList, ITodoListDetail } from "./../models/todo-list.model";
+import { ITodoListDetail } from "./../models/todo-list.model";
 import { useTypedSelector } from "./../use-typed-selector";
 import { setAllLists } from "../actions/todo-list-actions";
 import { useDispatch } from "react-redux";
-import { TodoList } from "./list";
 import { TodoListDetail } from "./list-detail";
-import FontAwesome from "react-fontawesome";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { AddList } from "./add-list";
 
 export interface IHomeProps {}
