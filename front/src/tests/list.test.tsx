@@ -10,10 +10,6 @@ jest.mock("react-router", () => ({
   useHistory: jest.fn(),
 }));
 
-// jest.mock("react-router-dom", () => ({
-//   useParams: jest.fn().mockReturnValue({ id: "123" }),
-// }));
-
 import React from "react";
 import renderer from "react-test-renderer";
 import { ITodoListDetail, ITodoList } from "../models/todo-list.model";

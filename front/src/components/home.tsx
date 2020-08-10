@@ -14,27 +14,21 @@ export function Home(props: IHomeProps) {
   const dispatch = useDispatch();
   const controller = new AbortController(); // for cancelling long-polling
 
-  console.log(lists);
-
-  const poll = () => {
-    get("http://localhost:8080/api/poll/lists", controller.signal)
-      .then((v: ITodoListDetail[]) => {
-        dispatch(setAllLists(v));
-      })
-      .catch(() => {});
-  };
-
   React.useEffect(() => {
     get("http://localhost:8080/api/list/all").then(
       (lists: ITodoListDetail[]) => {
         dispatch(setAllLists(lists));
-        console.log(lists);
       },
     );
   }, []);
+
   React.useEffect(() => {
     if (lists) {
-      poll();
+      get("http://localhost:8080/api/poll/lists", controller.signal)
+        .then((v: ITodoListDetail[]) => {
+          dispatch(setAllLists(v));
+        })
+        .catch(() => {});
     }
     return () => controller.abort();
   });
