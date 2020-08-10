@@ -4,13 +4,13 @@ Node
 
 ## Quick Start:
 
-### Back End
+### Backend
 
 cd back  
 npm install  
 npm run start
 
-### Front End
+### Frontend
 
 cd front  
 npm install  
