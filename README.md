@@ -19,6 +19,6 @@ npm run start
 ## Tests
 
 cd [front/back]
-npm run test\*
+npm run test
 
-\*Mocha may need to be installed globally to run backend tests. npm i -g mocha
+Mocha may need to be installed globally to run backend tests. npm i -g mocha

@@ -24,7 +24,7 @@ export function TodoListItem(props: ITodoListItemProps) {
 
   return (
     <li className="item pr-2">
-      <span className={item.done ? "strikethrough" : ""}>
+      <span className={item.done ? "strikethrough " : ""}>
         {props.index + 1}. {item.text}
       </span>
       <input

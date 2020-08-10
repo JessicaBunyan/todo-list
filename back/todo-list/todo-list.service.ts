@@ -20,6 +20,7 @@ export class TodoListService {
 
   public async saveList(list: TodoList) {
     list.id = list.id || getId();
+    list.items.forEach((i) => (i.id = i.id || getId()));
     this.lists[list.id] = list;
 
     return list;
